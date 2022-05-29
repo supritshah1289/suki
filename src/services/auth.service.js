@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "http://localhost:3000/api/auth/";
+const API_URL = "http://localhost:3000/auth/login";
 const CREATE_USER = "http://localhost:3000/users";
 
 class AuthService {
@@ -19,8 +19,9 @@ class AuthService {
   logout() {
     localStorage.removeItem("user");
   }
-  register(username, email, password) {
+  register(name, username, email, password) {
     return axios.post(CREATE_USER, {
+      name,
       username,
       email,
       password,
@@ -30,4 +31,5 @@ class AuthService {
     return JSON.parse(localStorage.getItem("user"));
   }
 }
+
 export default new AuthService();
